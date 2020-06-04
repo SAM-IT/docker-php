@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "\\SamIT\\Docker\\": ["src/"]
+            "SamIT\\Docker\\": ["src/"]
         }
     },
     "license": "MIT",
