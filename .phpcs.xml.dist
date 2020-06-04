@@ -3,8 +3,6 @@
     <description>The coding standard for PHP_CodeSniffer itself.</description>
 
     <file>src</file>
-    <file>tests</file>
-
     <arg name="basepath" value="."/>
     <arg name="colors"/>
     <arg name="parallel" value="75"/>

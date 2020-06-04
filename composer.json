@@ -13,7 +13,7 @@
     "license": "MIT",
     "scripts": {
         "post-install-cmd": "cghooks add --ignore-lock",
-        "test": "exit 0; #no tests yet",
+        "test": "echo TESTS HAVE NOT YET BEEN IMPLEMENTED",
         "lint": "vendor/bin/phpcs",
         "lint-fix": "vendor/bin/phpcbf"
     },
