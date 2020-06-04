@@ -1,0 +1,26 @@
+{
+    "name": "sam-it/docker-php",
+    "description": "Docker context helpers",
+    "type": "library",
+    "require": {
+        "php": "> 7.4",
+        "symfony/filesystem": "^5.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "brainmaestro/composer-git-hooks": "^2.8"
+    },
+    "license": "MIT",
+    "scripts": {
+        "post-install-cmd": "cghooks add --ignore-lock",
+        "test": "exit 0; #no tests yet",
+        "lint": "vendor/bin/phpcs",
+        "lint-fix": "vendor/bin/phpcbf"
+    },
+    "authors": [
+        {
+            "name": "Sam Mousa",
+            "email": "sam@mousa.nl"
+        }
+    ]
+}
