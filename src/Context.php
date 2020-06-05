@@ -90,7 +90,7 @@ class Context
 
     public function entrypoint(array $entrypoint): void
     {
-        $this->command("ENTRYPOINT [" . implode(', ', $entrypoint));
+        $this->command("ENTRYPOINT [" . implode(', ', $entrypoint) . "]");
     }
 
     public function env(string $name, $value): void
