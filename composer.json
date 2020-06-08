@@ -8,17 +8,23 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",
-        "brainmaestro/composer-git-hooks": "^2.8"
+        "brainmaestro/composer-git-hooks": "^2.8",
+        "phpunit/phpunit": "^9.2"
     },
     "autoload": {
         "psr-4": {
             "SamIT\\Docker\\": ["src/"]
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": ["tests/"]
+        }
+    },
     "license": "MIT",
     "scripts": {
         "post-install-cmd": "cghooks add --ignore-lock",
-        "test": "echo TESTS HAVE NOT YET BEEN IMPLEMENTED",
+        "test": "vendor/bin/phpunit --coverage-text --coverage-clover coverage.xml",
         "lint": "vendor/bin/phpcs",
         "lint-fix": "vendor/bin/phpcbf"
     },

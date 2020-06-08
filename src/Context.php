@@ -21,10 +21,9 @@ class Context
         $this->filesystem = new Filesystem();
         $dir = $temp ?? sys_get_temp_dir();
         // Random file name:
-        $name = "$dir/context_" . bin2hex(random_bytes(20));
-        if (file_exists("$dir/$name")) {
-            die('collision');
-        }
+        do {
+            $name = "$dir/context_" . bin2hex(random_bytes(20));
+        } while (file_exists("$dir/$name"));
         $this->filesystem->mkdir($name, 0777);
         $this->directory = $name;
     }
@@ -90,7 +89,7 @@ class Context
 
     public function entrypoint(array $entrypoint): void
     {
-        $this->command("ENTRYPOINT [" . implode(', ', "'$entrypoint'") . "]");
+        $this->command("ENTRYPOINT " . json_encode($entrypoint, JSON_UNESCAPED_SLASHES));
     }
 
     public function env(string $name, $value): void

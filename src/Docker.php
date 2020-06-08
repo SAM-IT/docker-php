@@ -13,6 +13,12 @@ class Docker
         }
     }
 
+    public function run(string $reference): int
+    {
+        passthru("docker run --rm {$reference}", $result);
+        return $result;
+    }
+
     public function push(string $tag): void
     {
         passthru("docker push {$tag}", $result);
