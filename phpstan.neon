@@ -1,0 +1,11 @@
+parameters:
+    reportUnmatchedIgnoredErrors: true
+    bootstrapFiles:
+      - 'vendor/autoload.php'
+    level: 8
+    paths:
+      - src
+    excludePaths:
+      - */tests/*
+    checkMaybeUndefinedVariables: true
+    checkGenericClassInNonGenericObjectType: false

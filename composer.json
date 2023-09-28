@@ -24,7 +24,7 @@
     },
     "license": "MIT",
     "scripts": {
-        "test": "vendor/bin/phpunit --coverage-text --coverage-clover coverage.xml"
+        "test": "vendor/bin/phpunit --coverage-clover coverage.xml"
     },
     "authors": [
         {

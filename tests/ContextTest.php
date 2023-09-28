@@ -10,7 +10,6 @@ use SamIT\Docker\Docker;
 
 /**
  * @covers \SamIT\Docker\Context
- * @uses \SamIT\Docker\Docker
  */
 class ContextTest extends TestCase
 {
@@ -20,16 +19,11 @@ class ContextTest extends TestCase
         $context->from('alpine:edge');
         $context->entrypoint(['/bin/sh', '-c', 'echo -n "command with \"special characters: "']);
 
-        $docker = new Docker();
-        $tag = bin2hex(random_bytes(16));
-        ob_start();
-        $docker->build($context, $tag);
-        ob_get_clean();
 
-        ob_start();
-        $result = $docker->run($tag);
-        $output = ob_get_clean();
-        $this->assertSame(0, $result);
+        $tag = bin2hex(random_bytes(16));
+        exec("docker build {$context->getDirectory()} -t {$tag} 2>&1", $output, $result);
+        $this->assertSame(0, $result, "Build output: " . print_r($output, true));
+        $output = shell_exec("docker run --rm -t {$tag}");
         $this->assertSame('command with "special characters: ', $output);
 
     }
