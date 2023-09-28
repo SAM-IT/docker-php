@@ -57,7 +57,11 @@ class Context
 
     public function addFile(string $path, string $source): void
     {
-        $name = 'disk_'. hash('sha256', realpath($source));
+        $realPath = realpath($source);
+        if ($realPath === false) {
+            throw new \InvalidArgumentException("Failed to resolve real path for $source, does it exist?");
+        }
+        $name = 'disk_'. hash('sha256', $realPath);
         if (is_dir($source)) {
             $this->filesystem->mirror($source, "{$this->directory}/$name");
         } else {
@@ -87,12 +91,16 @@ class Context
         $this->command("VOLUME $path");
     }
 
+    /**
+     * @param non-empty-list<string> $entrypoint
+     * @return void
+     */
     public function entrypoint(array $entrypoint): void
     {
         $this->command("ENTRYPOINT " . json_encode($entrypoint, JSON_UNESCAPED_SLASHES));
     }
 
-    public function env(string $name, $value): void
+    public function env(string $name, string|int $value): void
     {
         $this->command("ENV $name $value");
     }
