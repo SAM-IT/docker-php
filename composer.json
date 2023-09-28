@@ -23,9 +23,6 @@
         }
     },
     "license": "MIT",
-    "scripts": {
-        "test": "vendor/bin/phpunit --coverage-clover coverage.xml"
-    },
     "authors": [
         {
             "name": "Sam Mousa",
